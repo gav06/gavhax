@@ -52,10 +52,10 @@ public class Panel {
     }
 
     public void draw_panel(int mouseX, int mouseY) {
-        Gui.drawRect(x, y, x + width, y + 2, 0xffa1a1a1);
-        Gui.drawRect(x, y, x + 2, y + height, 0xffa1a1a1);
-        Gui.drawRect(x, (y + height) - 2, x + width, (y + height), 0xffa1a1a1);
-        Gui.drawRect((x + width) - 2, y, x + width, (y + height), 0xffa1a1a1);
+        Gui.drawRect(x, y, x + width, y + 2, 0xff666666);
+        Gui.drawRect(x, y, x + 2, y + height, 0xff666666);
+        Gui.drawRect(x, (y + height) - 2, x + width, (y + height), 0xff666666);
+        Gui.drawRect((x + width) - 2, y, x + width, (y + height), 0xff666666);
 
         //Gui.drawRect(x, y, x + width, y + height, 0xcca1a1a1);
         fr.drawStringWithShadow(category.toString(), x + ((width / 2.0F) - (fr.getStringWidth(category.toString()) / 2.0F)), y + 3, -1);

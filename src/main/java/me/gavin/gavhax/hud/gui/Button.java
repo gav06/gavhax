@@ -4,8 +4,10 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import me.gavin.gavhax.mod.Category;
 import me.gavin.gavhax.mod.Module;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.init.SoundEvents;
 
 public class Button {
 
@@ -27,7 +29,7 @@ public class Button {
 
     public void draw(int mouseX, int mouseY) {
         if (module.enabled) {
-            Gui.drawRect(parent.x, parent.y + offset, parent.x + width, parent.y + offset+ height, 0xcc6e6e6e);
+            Gui.drawRect(parent.x, parent.y + offset, parent.x + width, parent.y + offset+ height, 0xcc333333);
         } else {
             Gui.drawRect(parent.x, parent.y + offset, parent.x + width, parent.y + offset+ height, 0xcca1a1a1);
         }
@@ -41,11 +43,12 @@ public class Button {
 
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         if (isWithin(mouseX, mouseY)) {
+            Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F, 0.25F));
             module.toggle();
         }
     }
 
     public boolean isWithin(int x, int y) {
-        return x >= parent.x && x <= parent.x + 95 && y >= parent.y + this.offset && y <= parent.y + 16 + this.offset;
+        return x >= parent.x && x <= parent.x + width && y >= parent.y + this.offset && y <= parent.y + height + this.offset;
     }
 }
