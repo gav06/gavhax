@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "me.gavin.gavhax.injection.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mixins.gavhax.refmap.json",
+  "mixins": [
+    "MixinBlock",
+    "MixinGuiMainMenu",
+    "MixinGuiNewChat",
+    "MixinMinecraft",
+    "MixinNetworkManager",
+    "MixinRenderGlobal",
+    "MixinRenderManager",
+    "MixinVisGraph"
+  ],
+  "minVersion": "0.6"
+}
