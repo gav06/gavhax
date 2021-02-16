@@ -19,6 +19,8 @@ public class ModuleManager {
         addModule(new NoRenderMod());
         addModule(new TracersMod());
         addModule(new ReliantChatMod());
+        addModule(new ChestESPMod());
+        addModule(new MobESPMod());
 
         // combat
         addModule(new AutoTotemMod());
@@ -30,6 +32,8 @@ public class ModuleManager {
         addModule(new AntiKockbackMod());
         addModule(new NoFallMod());
         addModule(new SprintMod());
+        addModule(new CreativeFlyMod());
+        addModule(new StepMod());
 
         // world
         addModule(new XCarryMod());
@@ -37,6 +41,7 @@ public class ModuleManager {
         addModule(new PortalGodModeMod());
         addModule(new NoRotateMod());
         addModule(new NoBreakDelayMod());
+        addModule(new AntiExplosionMod());
 
         modules.sort(ModuleManager::compareTo);
     }

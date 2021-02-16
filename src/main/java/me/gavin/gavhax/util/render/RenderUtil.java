@@ -1,11 +1,9 @@
 package me.gavin.gavhax.util.render;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import org.lwjgl.opengl.GL11;
@@ -548,4 +546,86 @@ public class RenderUtil {
         GlStateManager.shadeModel(GL11.GL_FLAT);
         glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_DONT_CARE);
     }
+
+    public static void blockESPBox(BlockPos blockPos, int r, int g, int b, float a, boolean wireBox, boolean fill)  {
+        double x =
+                blockPos.getX()
+                        - Minecraft.getMinecraft().getRenderManager().renderPosX;
+        double y =
+                blockPos.getY()
+                        - Minecraft.getMinecraft().getRenderManager().renderPosY;
+        double z =
+                blockPos.getZ()
+                        - Minecraft.getMinecraft().getRenderManager().renderPosZ;
+
+        GL11.glLineWidth(2.0F);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glDepthMask(false);
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(770, 771);
+        if (fill)
+            RenderGlobal.renderFilledBox(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0), r, g, b, a);
+        if (wireBox)
+            RenderGlobal.drawBoundingBox(x, y, z, x + 1.0, y + 1.0, z + 1.0, r, g, b, .5f);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glDepthMask(true);
+        GL11.glDisable(GL11.GL_BLEND);
+    }
+
+    public static void blockESPBox(BlockPos blockPos, float r, float g, float b)
+    {
+        double x =
+                blockPos.getX()
+                        - Minecraft.getMinecraft().getRenderManager().renderPosX;
+        double y =
+                blockPos.getY()
+                        - Minecraft.getMinecraft().getRenderManager().renderPosY;
+        double z =
+                blockPos.getZ()
+                        - Minecraft.getMinecraft().getRenderManager().renderPosZ;
+        GL11.glBlendFunc(770, 771);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glLineWidth(2.0F);
+        //GL11.glColor4d(r, g, b, 0.15F);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GL11.glDepthMask(false);
+        //drawColorBox(new AxisAlignedBB(x, y, z, x + 1.0, y + 1.0, z + 1.0));
+        //GL11.glColor4d(r, g, b, 0.5F);
+        RenderGlobal.drawBoundingBox(x, y, z, x + 1.0, y + 1.0, z + 1.0, r, g, b,.50f);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glDepthMask(true);
+        GL11.glDisable(GL11.GL_BLEND);
+    }
+
+    public static void drawESPBox(double x_, double y_, double z_, double xOffset, double yOffset, double zOffset, int r, int g, int b)  {
+        double x =
+                x_
+                        - Minecraft.getMinecraft().getRenderManager().renderPosX;
+        double y =
+                y_
+                        - Minecraft.getMinecraft().getRenderManager().renderPosY;
+        double z =
+                z_
+                        - Minecraft.getMinecraft().getRenderManager().renderPosZ;
+
+
+        GL11.glLineWidth(2.0F);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glDepthMask(false);
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(770, 771);
+        RenderGlobal.drawBoundingBox(x, y, z, x + xOffset, y + yOffset, z + zOffset, r, g, b, .5f);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glDepthMask(true);
+        GL11.glDisable(GL11.GL_BLEND);
+    }
+
 }
